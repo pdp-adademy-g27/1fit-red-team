@@ -1,10 +1,15 @@
 services:
-  test-db:
+  one-fit-postgres:
     image: postgres:16
-    container_name: one-fit-db
+    container_name: one-fit-postgres
     ports:
       - "5000:5432"
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-      POSTGRES_DB: one_fit_db
+      POSTGRES_DB: one_fit_postgres
+  one-fit-redis:
+    container_name: one-fit-redis
+    image: redis:7.2.4
+    ports:
+      - "6379:6379"
