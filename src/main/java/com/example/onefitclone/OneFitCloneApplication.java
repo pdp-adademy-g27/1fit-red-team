@@ -8,6 +8,7 @@ public class OneFitCloneApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OneFitCloneApplication.class, args);
+        System.out.println("test");
     }
 
 }
