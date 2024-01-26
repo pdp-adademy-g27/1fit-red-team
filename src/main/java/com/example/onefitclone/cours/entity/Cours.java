@@ -11,11 +11,8 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+
 public class Cours {
-    @Id
-    private UUID id;
-    private String name;
-    private String description;
+
 
 }

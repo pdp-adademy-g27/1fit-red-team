@@ -11,11 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
+
 public class Category {
-    @Id
-    private UUID id;
-    private String name;
-    private byte[] bigImage;
-    private byte[] smailImage;
+
+
 }

@@ -11,13 +11,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
+
 public class Gym {
-    @Id
-    private UUID id;
-    private String name;
-    private String comment;
-    private Boolean isWomens;
+
 
 
 }
