@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cours {
-
+public class Course {
 
 }
