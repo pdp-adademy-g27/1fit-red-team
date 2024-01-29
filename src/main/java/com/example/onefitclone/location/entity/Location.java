@@ -1,5 +1,6 @@
 package com.example.onefitclone.location.entity;
 
+import com.example.onefitclone.studio.entity.Studio;
 import com.example.onefitclone.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,9 +15,8 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Entity
 public class Location {
-
-
-
+    @Id
+    private UUID id;
 }
