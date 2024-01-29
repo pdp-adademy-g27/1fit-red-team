@@ -1,7 +1,8 @@
 package com.example.onefitclone.user.entity;
 
-import com.example.onefitclone.location.entity.Location;
-import com.example.onefitclone.user.permission.Permission;
+
+import com.example.onefitclone.user.permission.entity.Permission;
+import com.example.onefitclone.user.role.entity.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,12 +25,12 @@ import java.util.UUID;
 public class User  implements UserDetails {
     @Id
     private UUID id;
-    private Integer timeToCome;
     private String name;
     private String surname;
     @Column(nullable = false ,unique = true)
     private String phoneNumber;
     private String password;
+    @Column(nullable = false ,unique = true)
     private String email;
     @CreatedDate
     private LocalDateTime created;
@@ -50,6 +51,16 @@ public class User  implements UserDetails {
     )
     private Set<Permission> permissions;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,26 +69,26 @@ public class User  implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return phoneNumber;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
