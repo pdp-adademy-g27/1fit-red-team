@@ -1,4 +1,4 @@
-package com.example.onefitclone.gym.category.entity;
+package com.example.onefitclone.studio.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,8 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-
-public class Category {
-
-
+@Entity
+public class Studio {
+    @Id
+    private UUID id;
 }

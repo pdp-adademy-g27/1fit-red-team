@@ -11,8 +11,9 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Entity
 public class Comment {
-
-
+    @Id
+    private UUID id;
+    private String comment;
 }
