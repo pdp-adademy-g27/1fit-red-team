@@ -3,6 +3,7 @@ package com.example.onefitclone.studio;
 import com.example.onefitclone.studio.dto.StudioCreateDto;
 import com.example.onefitclone.studio.dto.StudioResponseDto;
 import com.example.onefitclone.studio.dto.StudioUpdateDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class StudioController {
     private final StudioService studioService;
     @PostMapping
-    public ResponseEntity<StudioResponseDto> create(@RequestBody StudioCreateDto createDto) {
+    public ResponseEntity<StudioResponseDto> create(@RequestBody @Valid StudioCreateDto createDto) {
         StudioResponseDto responseDto = studioService.create(createDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)

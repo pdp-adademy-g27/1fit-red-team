@@ -34,7 +34,7 @@ public class CategoryService extends GenericService<Category, String, CategoryCr
                 .orElseThrow(
                         () -> new EntityNotFoundException("Category not found")
                 );
-        category.setName(categoryUpdateDto.getName());
+        mapper.toEntity(categoryUpdateDto, category);
         Category saved = repository.save(category);
         return mapper.toResponseDto(saved);
     }

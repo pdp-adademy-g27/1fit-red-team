@@ -37,9 +37,7 @@ public class StudioService extends GenericService<Studio, UUID, StudioCreateDto,
                 .orElseThrow(
                         () -> new EntityNotFoundException("Studio not found")
                 );
-        studio.setName(studioUpdateDto.getName());
-        studio.setDescription(studioUpdateDto.getDescription());
-        studio.setWomen(studioUpdateDto.isWomen());
+        mapper.toEntity(studioUpdateDto, studio);
         Studio saved = repository.save(studio);
         return mapper.toResponseDto(saved);
     }
