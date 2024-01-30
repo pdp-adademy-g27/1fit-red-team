@@ -21,13 +21,11 @@ public class CommentDtoMapper extends GenericMapper<Comment, CommentCreateDto, C
 
     @Override
     public CommentResponseDto toResponseDto(Comment comment) {
-
         return mapper.map(comment, CommentResponseDto.class);
     }
 
     @Override
     public void toEntity(CommentUpdateDto commentUpdateDto, Comment comment) {
-
         mapper.map(commentUpdateDto, comment);
     }
 }
