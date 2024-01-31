@@ -8,6 +8,10 @@ import com.example.onefitclone.user.entity.User;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -19,8 +23,6 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
     private final UserRepository repository;
     private final Class<User> entityClass=User.class;
     private final UserDtoMapper mapper;
-
-
 
     @Override
     protected UserResponseDto internalCreate(UserCreateDto userCreatedDto) {
@@ -40,4 +42,6 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
         return mapper.toResponseDto(saved);
 
     }
+
+
 }
