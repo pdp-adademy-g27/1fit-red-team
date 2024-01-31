@@ -1,6 +1,6 @@
 package com.example.onefitclone.user.entity;
 
-import com.example.onefitclone.location.entity.Location;
+import com.example.onefitclone.liked.entity.Liked;
 import com.example.onefitclone.user.permission.Permission;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -39,6 +40,9 @@ public class User  implements UserDetails {
     private LocalDateTime birthDate;
     @Enumerated
     private Gender gender;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Liked> carts ;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
