@@ -42,7 +42,7 @@ public class User  implements UserDetails {
     private Gender gender;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Liked> carts ;
+    private List<Liked> liked ;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
