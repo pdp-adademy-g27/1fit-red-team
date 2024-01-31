@@ -18,5 +18,7 @@ public class UserResponseDto extends UserBaseDto{
     private UUID id;
     private LocalDateTime created;
     private LocalDateTime updated;
+    private Set<RoleResponseDto> roles;
+    private Set<String> permissions;
 
 }
