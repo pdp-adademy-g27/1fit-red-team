@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreatedDto extends UserBaseDto {
+public class UserCreateDto extends UserBaseDto {
     private String password;
 }

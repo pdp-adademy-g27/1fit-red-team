@@ -3,7 +3,7 @@ package com.example.onefitclone.user.role;
 import com.example.onefitclone.common.service.GenericService;
 import com.example.onefitclone.user.permission.PermissionRepository;
 import com.example.onefitclone.user.permission.entity.Permission;
-import com.example.onefitclone.user.role.dto.RoleCreatedDto;
+import com.example.onefitclone.user.role.dto.RoleCreateDto;
 import com.example.onefitclone.user.role.dto.RoleResponseDto;
 import com.example.onefitclone.user.role.dto.RoleUpdateDto;
 import com.example.onefitclone.user.role.entity.Role;
@@ -21,17 +21,17 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Getter
 @Transactional
-public class RoleService extends GenericService<Role, UUID, RoleCreatedDto, RoleResponseDto, RoleUpdateDto> {
+public class RoleService extends GenericService<Role, UUID, RoleCreateDto, RoleResponseDto, RoleUpdateDto> {
     private final RoleRepository repository;
     private final PermissionRepository permissionRepository;
     private final Class<Role> entityClass = Role.class;
     private final RoleDtoMapper mapper;
     @Override
-    protected RoleResponseDto internalCreate(RoleCreatedDto roleCreatedDto) {
+    protected RoleResponseDto internalCreate(RoleCreateDto roleCreatedDto) {
         Role entity = mapper.toEntity(roleCreatedDto);
 
         Set<String> dtoPermissionNames = roleCreatedDto.getPermission();
-        Set<Permission> permissions = permissionRepository.findAllByName(roleCreatedDto.getPermission());
+        Set<Permission> permissions = permissionRepository.findAllByNameIn(roleCreatedDto.getPermission());
 
         if (dtoPermissionNames.size() != permissions.size()) {
             Set<String> permissionNames = permissions

@@ -3,10 +3,9 @@ package com.example.onefitclone.location.entity;
 import lombok.*;
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Location {
 
 

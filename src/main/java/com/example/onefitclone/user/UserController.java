@@ -1,6 +1,6 @@
 package com.example.onefitclone.user;
 
-import com.example.onefitclone.user.dto.UserCreatedDto;
+import com.example.onefitclone.user.dto.UserCreateDto;
 import com.example.onefitclone.user.dto.UserResponseDto;
 import com.example.onefitclone.user.dto.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class UserController {
     private final UserService userServise;
     @PostMapping
-    public ResponseEntity<UserResponseDto> create(@RequestBody UserCreatedDto createDto) {
+    public ResponseEntity<UserResponseDto> create(@RequestBody UserCreateDto createDto) {
         UserResponseDto responseDto = userServise.create(createDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }

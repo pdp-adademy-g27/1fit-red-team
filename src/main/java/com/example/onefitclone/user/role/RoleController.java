@@ -1,6 +1,6 @@
 package com.example.onefitclone.user.role;
 
-import com.example.onefitclone.user.role.dto.RoleCreatedDto;
+import com.example.onefitclone.user.role.dto.RoleCreateDto;
 import com.example.onefitclone.user.role.dto.RoleResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class RoleController {
     private final RoleService roleService;
 
     @PostMapping
-    public ResponseEntity<RoleResponseDto> createRole(@RequestBody @Valid RoleCreatedDto roleCreateDto) {
+    public ResponseEntity<RoleResponseDto> createRole(@RequestBody @Valid RoleCreateDto roleCreateDto) {
         RoleResponseDto responseDto = roleService.create(roleCreateDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }

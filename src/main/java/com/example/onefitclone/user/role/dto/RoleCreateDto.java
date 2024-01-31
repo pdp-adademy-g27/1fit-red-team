@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleCreatedDto {
+public class RoleCreateDto {
     @NotBlank
     private String name;
     @NotEmpty

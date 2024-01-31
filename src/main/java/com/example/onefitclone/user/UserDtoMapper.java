@@ -1,7 +1,7 @@
 package com.example.onefitclone.user;
 
 import com.example.onefitclone.common.mapper.GenericMapper;
-import com.example.onefitclone.user.dto.UserCreatedDto;
+import com.example.onefitclone.user.dto.UserCreateDto;
 import com.example.onefitclone.user.dto.UserResponseDto;
 import com.example.onefitclone.user.dto.UserUpdateDto;
 import com.example.onefitclone.user.entity.User;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserDtoMapper extends GenericMapper<User, UserCreatedDto, UserResponseDto, UserUpdateDto> {
+public class UserDtoMapper extends GenericMapper<User, UserCreateDto, UserResponseDto, UserUpdateDto> {
     private final ModelMapper mapper;
     @Override
-    public User toEntity(UserCreatedDto userCreatedDto) {
+    public User toEntity(UserCreateDto userCreatedDto) {
 
         return mapper.map(userCreatedDto,User.class);
     }

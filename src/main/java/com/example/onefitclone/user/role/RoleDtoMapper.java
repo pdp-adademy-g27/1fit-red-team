@@ -2,7 +2,7 @@ package com.example.onefitclone.user.role;
 
 import com.example.onefitclone.common.mapper.GenericMapper;
 import com.example.onefitclone.user.permission.entity.Permission;
-import com.example.onefitclone.user.role.dto.RoleCreatedDto;
+import com.example.onefitclone.user.role.dto.RoleCreateDto;
 import com.example.onefitclone.user.role.dto.RoleResponseDto;
 import com.example.onefitclone.user.role.dto.RoleUpdateDto;
 import com.example.onefitclone.user.role.entity.Role;
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class RoleDtoMapper extends GenericMapper<Role, RoleCreatedDto, RoleResponseDto, RoleUpdateDto> {
+public class RoleDtoMapper extends GenericMapper<Role, RoleCreateDto, RoleResponseDto, RoleUpdateDto> {
     private final ModelMapper modelMapper;
     @Override
-    public Role toEntity(RoleCreatedDto roleCreatedDto) {
+    public Role toEntity(RoleCreateDto roleCreatedDto) {
        return modelMapper.map(roleCreatedDto, Role.class);
 
     }
