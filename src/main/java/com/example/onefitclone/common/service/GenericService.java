@@ -4,7 +4,6 @@ import com.example.onefitclone.common.mapper.GenericMapper;
 import com.example.onefitclone.common.repository.GenericRepository;
 import com.example.onefitclone.common.rsql.SpecificationBuilder;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.Id;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
