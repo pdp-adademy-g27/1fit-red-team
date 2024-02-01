@@ -36,7 +36,7 @@ public class User {
     private LocalDateTime updated;
     private Double price;
     private LocalDateTime birthDate;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @EqualsAndHashCode.Exclude
