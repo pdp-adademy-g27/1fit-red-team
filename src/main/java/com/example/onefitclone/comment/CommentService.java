@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CommentService extends GenericService<Comment, UUID, CommentCreateDto, CommentResponseDto, CommentUpdateDto> {
     private final CommentRepository repository;
-    private final Class<Comment> entityClass=Comment.class;
+    private final Class<Comment> entityClass = Comment.class;
     private final CommentDtoMapper mapper;
 
 
