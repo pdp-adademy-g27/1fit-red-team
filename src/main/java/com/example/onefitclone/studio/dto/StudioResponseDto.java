@@ -2,7 +2,6 @@ package com.example.onefitclone.studio.dto;
 
 
 import com.example.onefitclone.studio.category.dto.CategoryResponseDto;
-import com.example.onefitclone.studio.category.entity.Category;
 
 import java.util.Set;
 import java.util.UUID;
