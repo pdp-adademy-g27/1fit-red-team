@@ -1,19 +1,23 @@
 package com.example.onefitclone.user.entity;
 
-import com.example.onefitclone.location.entity.Location;
-import com.example.onefitclone.user.permission.Permission;
+import com.example.onefitclone.user.permission.entity.Permission;
+import com.example.onefitclone.user.role.entity.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 @AllArgsConstructor
@@ -30,15 +34,26 @@ public class User  implements UserDetails {
     @Column(nullable = false ,unique = true)
     private String phoneNumber;
     private String password;
+    @Column(nullable = false ,unique = true)
     private String email;
     @CreatedDate
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
-    private Double price;
-    private LocalDateTime birthDate;
+    private Double balance;
+    private LocalDate birthDate;
     @Enumerated
     private Gender gender;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -53,7 +68,17 @@ public class User  implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Stream<Permission> rolePermissionStream = roles.stream()
+                .map(Role::getPermissions)
+                .flatMap(Collection::stream);
+
+        Stream<Permission> permissionStream = Stream.concat(rolePermissionStream, permissions.stream());
+
+        Set<SimpleGrantedAuthority> collect = permissionStream
+                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                .collect(Collectors.toSet());
+
+        return collect;
     }
 
     @Override
