@@ -1,20 +1,13 @@
-package com.example.onefitclone.feedback.entity;
+package com.example.onefitclone.feedback.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class Feedback {
-    @Id
-    private UUID id;
+public class FeedbackBaseDto {
     private String studioName;
     private String userName;
     private String phoneNumber;
