@@ -1,6 +1,6 @@
-package com.example.onefitclone.rating;
+package com.example.onefitclone.rating.entity;
 
-public enum RatingNameEnum {
+public enum RatingName {
     CLEANLINESS_OF_THE_DRESSING_ROOM,
     CLEANLINESS_OF_THE_ROOM,
     TRAINER_PROFESSIONALISM,
