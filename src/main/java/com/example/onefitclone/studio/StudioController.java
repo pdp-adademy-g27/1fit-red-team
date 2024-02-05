@@ -54,4 +54,10 @@ public class StudioController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
+
+    @PostMapping("/{id}/add/category/{name}")
+    public ResponseEntity<StudioResponseDto> addCategory(@PathVariable UUID id, @PathVariable String name){
+        StudioResponseDto studioResponseDto = studioService.addCategory(id, name);
+        return ResponseEntity.ok(studioResponseDto);
+    }
 }

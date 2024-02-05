@@ -1,11 +1,8 @@
 package com.example.onefitclone.studio.entity;
 
-import com.example.onefitclone.comment.entity.Comment;
-import com.example.onefitclone.course.entity.Course;
 import com.example.onefitclone.location.entity.Location;
 import com.example.onefitclone.studio.category.entity.Category;
 import jakarta.persistence.*;
-import liquibase.integration.spring.SpringResourceAccessor;
 import lombok.*;
 
 import java.util.Set;
@@ -23,8 +20,9 @@ public class Studio {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private boolean isWomen;
-    @ManyToMany
+    private boolean forFemale;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "studio_category",
             joinColumns = @JoinColumn(name = "studio_id"),
@@ -34,4 +32,6 @@ public class Studio {
     @ToString.Exclude
     private Set<Category> categories;
 
+    @OneToOne(mappedBy = "studio", cascade = CascadeType.ALL)
+    private Location location;
 }

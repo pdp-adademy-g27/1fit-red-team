@@ -1,6 +1,7 @@
 package com.example.onefitclone.user.entity;
 
 
+import com.example.onefitclone.rating.entity.Rating;
 import com.example.onefitclone.user.permission.entity.Permission;
 import com.example.onefitclone.user.role.entity.Role;
 import jakarta.persistence.*;
@@ -10,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -59,6 +59,6 @@ public class User {
     )
     private Set<Role> roles;
 
-
-
+    @OneToMany(mappedBy = "user")
+    private Set<Rating> ratings;
 }

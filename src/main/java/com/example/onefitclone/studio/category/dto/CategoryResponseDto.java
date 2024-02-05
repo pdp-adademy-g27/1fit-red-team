@@ -1,10 +1,17 @@
 package com.example.onefitclone.studio.category.dto;
 
 import com.example.onefitclone.studio.dto.StudioResponseDto;
-import com.example.onefitclone.studio.entity.Studio;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
-public class CategoryResponseDto extends CategoryDto{
-    private Set<StudioResponseDto> studios;
+@EqualsAndHashCode(callSuper = true)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CategoryResponseDto extends CategoryDto {
+    private List<StudioResponseDto> studios;
 }

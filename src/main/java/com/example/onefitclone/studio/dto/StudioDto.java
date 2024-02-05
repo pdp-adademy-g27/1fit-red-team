@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class StudioDto {
     private String name;
     private String description;
-    private boolean isWomen;
+    private boolean forFemale;
 }

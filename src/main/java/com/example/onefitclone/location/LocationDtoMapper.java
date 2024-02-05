@@ -1,7 +1,7 @@
 package com.example.onefitclone.location;
 
 import com.example.onefitclone.common.mapper.GenericMapper;
-import com.example.onefitclone.location.dto.LocationDto;
+import com.example.onefitclone.location.dto.LocationCreateDto;
 import com.example.onefitclone.location.dto.LocationResponseDto;
 import com.example.onefitclone.location.entity.Location;
 import lombok.RequiredArgsConstructor;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class LocationDtoMapper extends GenericMapper<Location, LocationDto, LocationResponseDto, LocationDto> {
+public class LocationDtoMapper extends GenericMapper<Location, LocationCreateDto, LocationResponseDto, LocationCreateDto> {
     private final ModelMapper mapper;
 
     @Override
-    public Location toEntity(LocationDto locationDto) {
+    public Location toEntity(LocationCreateDto locationDto) {
         return mapper.map(locationDto, Location.class);
     }
 
@@ -24,7 +24,7 @@ public class LocationDtoMapper extends GenericMapper<Location, LocationDto, Loca
     }
 
     @Override
-    public void toEntity(LocationDto locationDto, Location location) {
+    public void toEntity(LocationCreateDto locationDto, Location location) {
         mapper.map(locationDto, location);
     }
 }

@@ -21,7 +21,9 @@ public class Rating {
     private byte star;
     private String comment;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "studio_id")
     private Studio studio;
 }
