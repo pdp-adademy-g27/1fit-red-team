@@ -6,8 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
+import com.example.onefitclone.studio.category.dto.CategoryResponseDto;
 import java.util.UUID;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor

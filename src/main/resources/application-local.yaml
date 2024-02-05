@@ -8,3 +8,25 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    url: jdbc:postgresql://localhost:5000/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+onefit:
+  otp:
+    retry-wait-time: 5 # in seconds
+    retry-count: 3
+    time-to-live: 60 # in seconds:
+  notification:
+    sms:
+      eskiz: #eskiz token
+  security:
+    token:
+      expiration: 86400
+      secret: N7wgPJ+pSZThzOb2K3G8OC34TvoVysp7mqvlzpAGsaMhNAj6tCvE4Of4jVgzR4pY
