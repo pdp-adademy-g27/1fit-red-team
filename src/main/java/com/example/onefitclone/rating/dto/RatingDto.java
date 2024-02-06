@@ -1,29 +1,19 @@
-package com.example.onefitclone.rating.entity;
+package com.example.onefitclone.rating.dto;
 
+import com.example.onefitclone.rating.entity.RatingName;
 import com.example.onefitclone.studio.entity.Studio;
 import com.example.onefitclone.user.entity.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class Rating {
-    @Id
-    private UUID id;
-    @Enumerated
+public class RatingDto {
     private RatingName ratingName;
-    private byte star;
+    private int star;
     private String comment;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "studio_id")
     private Studio studio;
 }

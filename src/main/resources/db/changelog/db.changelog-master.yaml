@@ -1,2 +1,4 @@
 databaseChangeLog:
-  -
+  - include:
+      file: /04.02.2024/04.02.2024-create-category-and-studio-tables.yaml
+      relativeToChangelogFile: true

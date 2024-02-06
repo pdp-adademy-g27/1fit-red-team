@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @RequiredArgsConstructor
 public class StudioDtoMapper extends GenericMapper<Studio, StudioCreateDto, StudioResponseDto, StudioUpdateDto> {

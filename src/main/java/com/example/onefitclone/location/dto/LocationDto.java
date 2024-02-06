@@ -1,14 +1,14 @@
-package com.example.onefitclone.studio.dto;
+package com.example.onefitclone.location.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class StudioDto {
+public class LocationDto {
     private String name;
-    private String description;
-    private boolean forFemale;
+    private float longitude;
+    private float latitude;
 }
