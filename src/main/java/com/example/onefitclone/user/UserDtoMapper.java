@@ -38,13 +38,15 @@ public class UserDtoMapper extends GenericMapper<User, UserCreateDto, UserRespon
                 .map(roleDtoMapper::toResponseDto)
                 .collect(Collectors.toSet());
 
-        Set<String> permissions = user
-                .getPermissions()
-                .stream()
-                .map(Permission::getName)
-                .collect(Collectors.toSet());
+        if (user.getPermissions()!=null) {
+            Set<String> permissions = user
+                    .getPermissions()
+                    .stream()
+                    .map(Permission::getName)
+                    .collect(Collectors.toSet());
 
-        responseDto.setPermissions(permissions);
+            responseDto.setPermissions(permissions);
+        }
         responseDto.setRoles(roles);
         return responseDto;
     }

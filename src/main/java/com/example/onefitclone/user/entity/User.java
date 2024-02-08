@@ -1,6 +1,6 @@
 package com.example.onefitclone.user.entity;
 
-
+import com.example.onefitclone.rating.entity.Rating;
 import com.example.onefitclone.user.permission.entity.Permission;
 import com.example.onefitclone.user.role.entity.Role;
 import jakarta.persistence.*;
@@ -8,11 +8,16 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 @AllArgsConstructor
@@ -20,9 +25,10 @@ import java.util.UUID;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "`user`")
-public class User {
+public class User  implements UserDetails {
     @Id
     private UUID id;
+    private Integer timeToCome;
     private String name;
     private String surname;
     @Column(nullable = false ,unique = true)
@@ -34,20 +40,10 @@ public class User {
     private LocalDateTime created;
     @LastModifiedDate
     private LocalDateTime updated;
-    private Double price;
-    private LocalDateTime birthDate;
-    @Enumerated(EnumType.STRING)
+    private Double balance;
+    private LocalDate birthDate;
+    @Enumerated
     private Gender gender;
-
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_permission",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "permission_id")
-    )
-    private Set<Permission> permissions;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
@@ -59,6 +55,57 @@ public class User {
     )
     private Set<Role> roles;
 
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_permission",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
+    private Set<Permission> permissions;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Stream<Permission> rolePermissionStream = roles.stream()
+                .map(Role::getPermissions)
+                .flatMap(Collection::stream);
+
+        Stream<Permission> permissionStream = Stream.concat(rolePermissionStream, permissions.stream());
+
+        Set<SimpleGrantedAuthority> collect = permissionStream
+                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                .collect(Collectors.toSet());
+
+        return collect;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @OneToMany(mappedBy = "user")
+    private Set<Rating> ratings;
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

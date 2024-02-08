@@ -8,6 +8,7 @@ import jakarta.persistence.ManyToMany;
 import lombok.*;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor

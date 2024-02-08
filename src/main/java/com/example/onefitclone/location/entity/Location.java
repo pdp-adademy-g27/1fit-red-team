@@ -1,15 +1,10 @@
 package com.example.onefitclone.location.entity;
 
 import com.example.onefitclone.studio.entity.Studio;
-import com.example.onefitclone.user.entity.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -19,4 +14,11 @@ import java.util.UUID;
 public class Location {
     @Id
     private UUID id;
+    @NotBlank
+    private String name;
+    private double longitude;
+    private double latitude;
+    @OneToOne
+    @JoinColumn(name = "studio_id",unique = true, nullable = false)
+    private Studio studio;
 }
