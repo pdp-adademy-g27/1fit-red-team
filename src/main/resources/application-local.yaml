@@ -8,8 +8,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    hibernate:
-      ddl-auto: update
 onefit:
   otp:
     retry-wait-time: 5 # in seconds
@@ -21,4 +19,5 @@ onefit:
   security:
     token:
       expiration: 86400
-      secret: N7wgPJ+pSZThzOb2K3G8OC34TvoVysp7mqvlzpAGsaMhNAj6tCvE4Of4jVgzR4pY
+      secret: SzqXrBuEVJOVLqjGeenHM6aNo8j3KJiKJ4LWB3oZf8aSlkkQgw6L6ZwklCbQK2Y/
+

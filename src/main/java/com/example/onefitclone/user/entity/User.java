@@ -31,7 +31,6 @@ import java.util.stream.Stream;
 public class User  implements UserDetails {
     @Id
     private UUID id;
-    private Integer timeToCome;
     private String name;
     private String surname;
     @Column(nullable = false ,unique = true)
@@ -45,7 +44,7 @@ public class User  implements UserDetails {
     private LocalDateTime updated;
     private Double balance;
     private LocalDate birthDate;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

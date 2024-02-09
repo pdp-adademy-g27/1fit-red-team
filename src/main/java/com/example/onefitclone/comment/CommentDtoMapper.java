@@ -21,7 +21,12 @@ public class CommentDtoMapper extends GenericMapper<Comment, CommentCreateDto, C
 
     @Override
     public CommentResponseDto toResponseDto(Comment comment) {
-        return mapper.map(comment, CommentResponseDto.class);
+        CommentResponseDto responseDto = mapper.map(comment, CommentResponseDto.class);
+
+        String userName = comment.getUser().getName();
+        responseDto.setUser(userName);
+
+        return responseDto;
     }
 
     @Override

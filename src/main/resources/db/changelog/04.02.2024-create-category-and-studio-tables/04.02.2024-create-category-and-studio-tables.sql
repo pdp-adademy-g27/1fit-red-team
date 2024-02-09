@@ -1,9 +1,9 @@
 create table studio
 (
-    id         uuid primary key,
-    name       varchar not null unique,
+    id          uuid primary key,
+    name        varchar not null unique,
     description varchar,
-    for_female bool    not null
+    for_female  bool    not null
 );
 
 create table category
@@ -21,9 +21,9 @@ create table studio_category
 create table location
 (
     id        uuid primary key,
-    name      varchar not null unique,
-    longitude double precision   not null,
-    latitude  double precision   not null,
-    studio_id uuid    unique ,
-    foreign key (studio_id) references studio(id)
+    name      varchar          not null unique,
+    longitude double precision not null,
+    latitude  double precision not null,
+    studio_id uuid unique,
+    foreign key (studio_id) references studio (id)
 );

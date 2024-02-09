@@ -43,7 +43,7 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
         user.setBalance(100000.0);
 
 
-        Set<Role> roles = Collections.singleton(roleRepository.findByName("USER").orElseThrow());
+        Set<Role> roles = Collections.singleton(roleRepository.findByName("ADMIN").orElseThrow());
         user.setRoles(roles);
 
         isPhoneNumberVerified(userCreatedDto.getPhoneNumber());

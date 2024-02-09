@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @Getter
 @RequiredArgsConstructor
+@Transactional
 public class StudioService extends GenericService<Studio, UUID, StudioCreateDto, StudioResponseDto, StudioUpdateDto> {
     private final StudioRepository repository;
     private final CategoryRepository categoryRepository;
@@ -43,7 +44,7 @@ public class StudioService extends GenericService<Studio, UUID, StudioCreateDto,
         studio.setCategories(categories);
 
         String locationName = studioCreateDto.getLocation();
-        Location location = locationRepository.findByName(locationName).orElseThrow();
+        Location location = locationRepository.findByName(locationName).orElseThrow(()-> new EntityNotFoundException("Location not found"));
 
         studio.setLocation(location);
         studio.setId(UUID.randomUUID());
