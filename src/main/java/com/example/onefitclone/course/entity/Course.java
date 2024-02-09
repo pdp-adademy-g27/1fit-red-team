@@ -1,5 +1,6 @@
 package com.example.onefitclone.course.entity;
 
+import com.example.onefitclone.history.entity.History;
 import com.example.onefitclone.liked.entity.Liked;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -21,4 +22,6 @@ public class Course {
     private UUID id;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Liked> carts ;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<History> histories ;
 }
