@@ -1,6 +1,6 @@
 package com.example.onefitclone.user.dto;
 
-import com.example.onefitclone.membership.entity.Membership;
+import com.example.onefitclone.membership.dto.MembershipResponseDto;
 import com.example.onefitclone.user.role.dto.RoleResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +21,6 @@ public class UserResponseDto extends UserBaseDto{
     private LocalDateTime updated;
     private Set<RoleResponseDto> roles;
     private Set<String> permissions;
-    private Set<Membership> memberships;
+    private UUID membership_id;
 
 }
