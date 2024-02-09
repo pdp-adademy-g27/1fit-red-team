@@ -2,6 +2,8 @@ package com.example.onefitclone.user;
 
 import com.example.onefitclone.common.exceptions.OtpException;
 import com.example.onefitclone.common.service.GenericService;
+import com.example.onefitclone.membership.MembershipRepository;
+import com.example.onefitclone.membership.entity.Membership;
 import com.example.onefitclone.user.dto.UserCreateDto;
 import com.example.onefitclone.user.dto.UserResponseDto;
 import com.example.onefitclone.user.dto.UserSignInDto;
@@ -31,6 +33,7 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
     private final OtpRepository otpRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final MembershipRepository membershipRepository;
 
     @Override
     protected UserResponseDto internalCreate(UserCreateDto userCreatedDto) {
@@ -79,5 +82,15 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
         }
 
         return mapper.toResponseDto(user);
+    }
+
+    @Transactional
+    public UserResponseDto addMembership(UUID userId, UUID membershipId) {
+        User user = repository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found by id: " + userId));
+        Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new EntityNotFoundException("Membership not found by id: " + membershipId));
+        user.getMemberships().add(membership);
+        User saved = repository.save(user);
+        membershipRepository.save(membership);
+        return mapper.toResponseDto(saved);
     }
 }

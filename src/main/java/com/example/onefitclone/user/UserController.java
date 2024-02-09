@@ -53,7 +53,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-
     @PostMapping("/auth/validate")
     public ResponseEntity<CommonResponse> validatePhoneNumber(
             @RequestBody @Valid ValidatePhoneNumberRequestDto requestDto
@@ -75,7 +74,6 @@ public class UserController {
                 .body(userResponseDto);
     }
 
-
     @PostMapping("/auth/sign-in")
     public ResponseEntity<UserResponseDto> singIn(
             @RequestBody @Valid UserSignInDto signInDto
@@ -89,5 +87,9 @@ public class UserController {
                 .body(userResponseDto);
     }
 
+    @PostMapping("/{user_id}/add/membership/{membership_id}")
+    public ResponseEntity<UserResponseDto> addMembership(@PathVariable UUID user_id, @PathVariable UUID membership_id){
+        UserResponseDto userResponseDto = userService.addMembership(user_id, membership_id);
+        return ResponseEntity.ok(userResponseDto);
+    }
 }
-

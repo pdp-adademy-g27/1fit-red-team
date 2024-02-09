@@ -1,5 +1,7 @@
 package com.example.onefitclone.user.entity;
 
+import com.example.onefitclone.history.entity.History;
+import com.example.onefitclone.membership.entity.Membership;
 import com.example.onefitclone.rating.entity.Rating;
 import com.example.onefitclone.user.permission.entity.Permission;
 import com.example.onefitclone.user.role.entity.Role;
@@ -44,6 +46,12 @@ public class User  implements UserDetails {
     private LocalDate birthDate;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Membership> memberships;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<History> histories;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

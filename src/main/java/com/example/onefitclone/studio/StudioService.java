@@ -67,6 +67,7 @@ public class StudioService extends GenericService<Studio, UUID, StudioCreateDto,
         return mapper.toResponseDto(saved);
     }
 
+    @Transactional
     public StudioResponseDto addCategory(UUID studioId, String name) {
         Studio studio = repository.findById(studioId).orElseThrow(() -> new EntityNotFoundException("Studio not found"));
         Category category = categoryRepository.findById(name).orElseThrow(() -> new EntityNotFoundException("Category not found"));
