@@ -88,9 +88,11 @@ public class UserService  extends GenericService<User, UUID, UserCreateDto, User
     public UserResponseDto addMembership(UUID userId, UUID membershipId) {
         User user = repository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found by id: " + userId));
         Membership membership = membershipRepository.findById(membershipId).orElseThrow(() -> new EntityNotFoundException("Membership not found by id: " + membershipId));
-        user.getMemberships().add(membership);
+        user.setMembership(membership);
         User saved = repository.save(user);
         membershipRepository.save(membership);
         return mapper.toResponseDto(saved);
     }
+
+
 }
