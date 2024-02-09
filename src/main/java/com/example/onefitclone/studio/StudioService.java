@@ -10,6 +10,7 @@ import com.example.onefitclone.studio.dto.StudioResponseDto;
 import com.example.onefitclone.studio.dto.StudioUpdateDto;
 import com.example.onefitclone.studio.entity.Studio;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,7 @@ public class StudioService extends GenericService<Studio, UUID, StudioCreateDto,
         return mapper.toResponseDto(saved);
     }
 
+    @Transactional
     public StudioResponseDto addCategory(UUID studioId, String name) {
         Studio studio = repository.findById(studioId).orElseThrow(() -> new EntityNotFoundException("Studio not found"));
         Category category = categoryRepository.findById(name).orElseThrow(() -> new EntityNotFoundException("Category not found"));

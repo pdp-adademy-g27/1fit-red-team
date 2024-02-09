@@ -1,5 +1,7 @@
 package com.example.onefitclone.user.entity;
 
+import com.example.onefitclone.history.entity.History;
+import com.example.onefitclone.membership.entity.Membership;
 import com.example.onefitclone.rating.entity.Rating;
 import com.example.onefitclone.user.permission.entity.Permission;
 import com.example.onefitclone.user.role.entity.Role;
@@ -14,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -44,6 +47,12 @@ public class User  implements UserDetails {
     private LocalDate birthDate;
     @Enumerated
     private Gender gender;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Membership> memberships;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<History> histories;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
