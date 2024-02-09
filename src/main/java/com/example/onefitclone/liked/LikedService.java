@@ -5,6 +5,7 @@ import com.example.onefitclone.liked.dto.LikedCreateDto;
 import com.example.onefitclone.liked.dto.LikedResponseDto;
 import com.example.onefitclone.liked.dto.LikedUpdateDto;
 import com.example.onefitclone.liked.entity.Liked;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,22 @@ public class LikedService extends GenericService<Liked, UUID, LikedCreateDto, Li
 
     @Override
     protected LikedResponseDto internalCreate(LikedCreateDto likedCreateDto) {
-        return null;
+
+        Liked liked = mapper.toEntity(likedCreateDto);
+        liked.setId(UUID.randomUUID());
+        Liked saved = repository.save(liked);
+        return mapper.toResponseDto(saved);
     }
 
     @Override
     protected LikedResponseDto internalUpdate(UUID uuid, LikedUpdateDto likedUpdateDto) {
-        return null;
+
+        Liked liked = repository.findById(uuid)
+                .orElseThrow(
+                        () -> new EntityNotFoundException(" Liked not found")
+                );
+        mapper.toEntity(likedUpdateDto, liked);
+        Liked saved = repository.save(liked);
+        return mapper.toResponseDto(saved);
     }
 }

@@ -1,22 +1,19 @@
-package com.example.onefitclone.history.entity;
+package com.example.onefitclone.history.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.onefitclone.course.entity.Course;
+import com.example.onefitclone.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class History {
-    @Id
-    private UUID id;
+public class HistoryBaseDto {
     private LocalDateTime whenComing;
     private LocalDateTime whenLeft;
-
+    private User user;
+    private Course course;
 }
