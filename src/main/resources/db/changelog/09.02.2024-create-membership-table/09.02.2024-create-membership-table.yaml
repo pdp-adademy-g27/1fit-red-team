@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-membership-table
+      author: developercruela@gmail.com
+      changes:
+        - sqlFile:
+            path: 09.02.2024-create-membership-table.sql
+            relativeToChangelogFile: true

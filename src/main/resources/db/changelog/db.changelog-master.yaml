@@ -17,3 +17,6 @@ databaseChangeLog:
   - include:
       file: /09.02.2024-create-rating-table/09.02.2024-create-rating-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: /09.02.2024-create-membership-table/09.02.2024-create-membership-table.yaml
+      relativeToChangelogFile: true
