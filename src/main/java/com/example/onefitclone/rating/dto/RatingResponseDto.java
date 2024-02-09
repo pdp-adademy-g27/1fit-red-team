@@ -9,4 +9,6 @@ import java.util.UUID;
 @Data
 public class RatingResponseDto extends RatingDto{
     private UUID id;
+    private String user;
+    private String studio;
 }

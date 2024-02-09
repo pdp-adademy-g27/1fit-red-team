@@ -5,6 +5,7 @@ import com.example.onefitclone.location.dto.LocationCreateDto;
 import com.example.onefitclone.location.dto.LocationResponseDto;
 import com.example.onefitclone.location.entity.Location;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Service
 @Getter
 @RequiredArgsConstructor
+@Transactional
 public class LocationService extends GenericService<Location, UUID, LocationCreateDto,LocationResponseDto, LocationCreateDto> {
     private final LocationRepository repository;
     private final Class<Location> entityClass = Location.class;

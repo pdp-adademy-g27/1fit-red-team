@@ -10,6 +10,7 @@ import com.example.onefitclone.studio.dto.StudioResponseDto;
 import com.example.onefitclone.studio.dto.StudioUpdateDto;
 import com.example.onefitclone.studio.entity.Studio;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @Service
 @Getter
 @RequiredArgsConstructor
+@Transactional
 public class StudioService extends GenericService<Studio, UUID, StudioCreateDto, StudioResponseDto, StudioUpdateDto> {
     private final StudioRepository repository;
     private final CategoryRepository categoryRepository;
@@ -42,7 +44,7 @@ public class StudioService extends GenericService<Studio, UUID, StudioCreateDto,
         studio.setCategories(categories);
 
         String locationName = studioCreateDto.getLocation();
-        Location location = locationRepository.findByName(locationName).orElseThrow();
+        Location location = locationRepository.findByName(locationName).orElseThrow(()-> new EntityNotFoundException("Location not found"));
 
         studio.setLocation(location);
         studio.setId(UUID.randomUUID());

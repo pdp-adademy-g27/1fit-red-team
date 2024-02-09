@@ -1,4 +1,19 @@
 databaseChangeLog:
   - include:
-      file: /04.02.2024/04.02.2024-create-category-and-studio-tables.yaml
+      file: /07.02.2024-create-user-table/07.02.2024-create-user-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: /07.02.2024-create-role-permission-table/07.02.2024-create-role-permission-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: /07.02.2024-create-default-role-and-permissions/07.02.2024-create-default-role-and-permissions.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: /04.02.2024-create-category-and-studio-tables/04.02.2024-create-category-and-studio-tables.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: /08.02.2024-create-course-and-comment-table/08.02.2024-create-course-and-comment-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: /09.02.2024-create-rating-table/09.02.2024-create-rating-table.yaml
       relativeToChangelogFile: true

@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,7 +29,6 @@ import java.util.stream.Stream;
 public class User  implements UserDetails {
     @Id
     private UUID id;
-    private Integer timeToCome;
     private String name;
     private String surname;
     @Column(nullable = false ,unique = true)
@@ -42,7 +42,7 @@ public class User  implements UserDetails {
     private LocalDateTime updated;
     private Double balance;
     private LocalDate birthDate;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @EqualsAndHashCode.Exclude

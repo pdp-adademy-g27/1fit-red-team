@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-course-and-comment-table
+      author: developercruela@gmail.com
+      changes:
+        - sqlFile:
+            path: 08.02.2024-create-course-and-comment-table.sql
+            relativeToChangelogFile: true
