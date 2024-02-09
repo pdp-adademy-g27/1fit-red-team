@@ -1,4 +1,5 @@
 package com.example.onefitclone.history.dto;
 
-public class HistoryResponseDto {
-}
+
+public class HistoryResponseDto extends HistoryBaseDto{
+

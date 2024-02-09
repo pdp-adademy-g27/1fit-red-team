@@ -1,4 +1,4 @@
 package com.example.onefitclone.history.dto;
 
-public class HistoryUpdateDto {
-}
+public class HistoryUpdateDto extends HistoryBaseDto{
+
