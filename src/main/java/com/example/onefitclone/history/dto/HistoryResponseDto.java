@@ -1,5 +1,4 @@
 package com.example.onefitclone.history.dto;
-
 import com.example.onefitclone.course.dto.CourseResponseDto;
 import com.example.onefitclone.user.dto.UserResponseDto;
 import lombok.AllArgsConstructor;
@@ -17,4 +16,4 @@ public class HistoryResponseDto extends HistoryDto{
     private UUID id;
     private UserResponseDto user;
     private CourseResponseDto course;
-}
+public class HistoryResponseDto extends HistoryBaseDto{

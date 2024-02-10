@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         registry -> registry
-                                .requestMatchers("/user/auth/**")
+                                .requestMatchers("/user/auth/**","/email/**" )
                                 .permitAll()
                                 .anyRequest().authenticated()
                 )

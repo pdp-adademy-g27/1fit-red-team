@@ -47,8 +47,13 @@ public class User  implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Membership> memberships;
+    @Column(columnDefinition = "boolean default false")
+    private boolean isVerify;
+
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Membership membership;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<History> histories;
