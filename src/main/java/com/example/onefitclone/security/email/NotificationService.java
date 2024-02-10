@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import com.example.onefitclone.common.variable.Variables;
 
 @Service
 @RequiredArgsConstructor
@@ -15,9 +14,9 @@ public class NotificationService {
     public void sendVerifyCode(String email,int code) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(Variables.MY_EMAIL);
+            message.setFrom("hsopoyev11@gmail.com");
             message.setTo(email);
-            message.setSubject(Variables.VERIFY_CODE_MESSAGE);
+            message.setSubject("qwerty");
             message.setText(String.valueOf(code));
             javaMailSender.send(message);
         } catch (Exception e) {
@@ -29,9 +28,9 @@ public class NotificationService {
     public void forgetPassword(String email, String url) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(Variables.MY_EMAIL);
+            message.setFrom("hsopoyev11@gmail.com");
             message.setTo(email);
-            message.setSubject(Variables.VERIFY_CODE_MESSAGE);
+            message.setSubject("qwerty");
             message.setText(url);
             javaMailSender.send(message);
         } catch (Exception e) {

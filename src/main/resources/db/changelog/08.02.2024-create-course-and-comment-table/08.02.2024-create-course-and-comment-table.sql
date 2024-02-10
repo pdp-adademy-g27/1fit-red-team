@@ -16,3 +16,10 @@ create table comment
     course_id uuid references course (id),
     user_id   uuid references "user"
 );
+
+create table user_course
+(
+    user_id   uuid references "user",
+    course_id uuid references course,
+    primary key (user_id, course_id)
+);

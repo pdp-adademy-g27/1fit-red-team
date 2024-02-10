@@ -27,3 +27,9 @@ create table location
     studio_id uuid unique,
     foreign key (studio_id) references studio (id)
 );
+
+create table user_studio(
+    user_id uuid references "user",
+    studio_id uuid references studio,
+    primary key(user_id, studio_id)
+);

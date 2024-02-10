@@ -7,6 +7,7 @@ CREATE TABLE "user"
     email        VARCHAR UNIQUE,
     password     VARCHAR   NOT NULL,
     balance      DOUBLE PRECISION,
+    is_verify    boolean default false,
     birth_date   TIMESTAMP,
     gender       varchar NOT NULL,
     created      TIMESTAMP NOT NULL,

@@ -4,6 +4,7 @@ import com.example.onefitclone.course.entity.Course;
 import com.example.onefitclone.location.entity.Location;
 import com.example.onefitclone.rating.entity.Rating;
 import com.example.onefitclone.studio.category.entity.Category;
+import com.example.onefitclone.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,4 +49,9 @@ public class Studio {
     @ToString.Exclude
     @OneToMany(mappedBy = "studio", cascade = CascadeType.ALL)
     private Set<Rating> ratings;
+
+    @ManyToMany(mappedBy = "studios")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<User> users;
 }

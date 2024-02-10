@@ -16,4 +16,4 @@ public class HistoryResponseDto extends HistoryDto{
     private UUID id;
     private UserResponseDto user;
     private CourseResponseDto course;
-public class HistoryResponseDto extends HistoryBaseDto{
+}
