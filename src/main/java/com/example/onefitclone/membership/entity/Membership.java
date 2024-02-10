@@ -21,7 +21,7 @@ public class Membership {
     private LocalDate bought_day;
     @Column(nullable = false)
     private int duration_days;
-    @OneToMany(mappedBy = "membership", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "memberships", cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<User> users;

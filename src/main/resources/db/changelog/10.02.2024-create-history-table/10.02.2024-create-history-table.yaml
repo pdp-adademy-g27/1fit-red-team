@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-history-table
+      author: developercruela@gmail.com
+      changes:
+        - sqlFile:
+            path: 10.02.2024-create-history-table.sql
+            relativeToChangelogFile: true

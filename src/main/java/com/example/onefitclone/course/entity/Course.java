@@ -3,6 +3,7 @@ package com.example.onefitclone.course.entity;
 
 import com.example.onefitclone.comment.entity.Comment;
 import com.example.onefitclone.studio.entity.Studio;
+import com.example.onefitclone.user.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 import com.example.onefitclone.history.entity.History;
@@ -44,7 +45,12 @@ public class Course {
     private Studio studio;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Liked> carts ;
+    private List<Liked> carts;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<History> histories ;
+    private List<History> histories;
+
+    @ManyToMany(mappedBy = "courses")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<User> users;
 }

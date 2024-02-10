@@ -20,3 +20,7 @@ databaseChangeLog:
   - include:
       file: /09.02.2024-create-membership-table/09.02.2024-create-membership-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: /10.02.2024-create-history-table/10.02.2024-create-history-table.yaml
+      relativeToChangelogFile: true
+

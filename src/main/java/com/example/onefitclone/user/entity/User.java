@@ -1,8 +1,10 @@
 package com.example.onefitclone.user.entity;
 
+import com.example.onefitclone.course.entity.Course;
 import com.example.onefitclone.history.entity.History;
 import com.example.onefitclone.membership.entity.Membership;
 import com.example.onefitclone.rating.entity.Rating;
+import com.example.onefitclone.studio.entity.Studio;
 import com.example.onefitclone.user.permission.entity.Permission;
 import com.example.onefitclone.user.role.entity.Role;
 import jakarta.persistence.*;
@@ -28,15 +30,15 @@ import java.util.stream.Stream;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "`user`")
-public class User  implements UserDetails {
+public class User implements UserDetails {
     @Id
     private UUID id;
     private String name;
     private String surname;
-    @Column(nullable = false ,unique = true)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
     private String password;
-    @Column(nullable = false ,unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     @CreatedDate
     private LocalDateTime created;
@@ -50,13 +52,38 @@ public class User  implements UserDetails {
     @Column(columnDefinition = "boolean default false")
     private boolean isVerify;
 
-    @ManyToOne
-    @EqualsAndHashCode.Exclude
+    @ManyToMany
     @ToString.Exclude
-    private Membership membership;
+    @EqualsAndHashCode.Exclude
+    @JoinTable(
+            name = "user_membership",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "membership_id")
+    )
+    private Set<Membership> memberships;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<History> histories;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinTable(
+            name = "user_studio",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "studio_id")
+    )
+    private Set<Studio> studios;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JoinTable(
+            name = "user_course",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private Set<Course> courses;
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
