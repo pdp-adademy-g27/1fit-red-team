@@ -12,8 +12,8 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HistoryResponseDto extends HistoryDto{
+public class HistoryResponseDto extends HistoryDto {
     private UUID id;
     private UserResponseDto user;
     private CourseResponseDto course;
-public class HistoryResponseDto extends HistoryBaseDto{
+}
